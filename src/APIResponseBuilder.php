@@ -191,7 +191,6 @@ class APIResponseBuilder
         if (!empty($additional)) {
             $response = array_merge($response, $additional);
         }
-
-        return ['response' => $response, 'code' => $code];
+        return response()->json($response,$code);
     }
 }
