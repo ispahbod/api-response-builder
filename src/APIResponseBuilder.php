@@ -172,6 +172,16 @@ class APIResponseBuilder
         return self::success($data, $message, $code, []);
     }
 
+    public static function returnData($data = [], $message = "Data returned successfully.", $code = 200, $additional = []): array
+    {
+        return self::success($data, $message, $code, $additional);
+    }
+
+    public static function fieldError($message = "There is an error with the input fields.", $errors = [], $code = 422, $additional = []): array
+    {
+        return self::error($message, $errors, $code, $additional);
+    }
+
     protected static function buildResponse($success, $message, $data, $code, $additional, $errors = []): array
     {
         $response = [
