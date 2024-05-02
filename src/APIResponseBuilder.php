@@ -181,13 +181,13 @@ class APIResponseBuilder
         return self::error($message, $errors, $code, $additional);
     }
 
-    public static function paginationData($data = [], $offset = 0, $limit = 10): JsonResponse
+    public static function paginationData($data = [], $total = 0, $offset = 0, $limit = 10): JsonResponse
     {
-        $totalCount = count($data);
-        $moreAvailable = ($totalCount > ($offset + $limit));
+        $moreAvailable = ($total > ($offset + $limit));
         $pagination = [
-            'total' => $totalCount,
+            'total' => $total,
             'moreAvailable' => $moreAvailable,
+            'currentCount' => count($data),
             'currentOffset' => $offset,
             'nextOffset' => $moreAvailable ? ($offset + $limit) : null
         ];
